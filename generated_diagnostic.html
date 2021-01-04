@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>rust-analyzer</title>
+  <meta name="description"
+    content="rust-analyzer: building a better Rust IDE">
+
+  <link rel="stylesheet" href="/css/asciidoctor.css">
+  <link rel="stylesheet" href="/css/rouge-github.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <link rel="canonical" href="https://rust-analyzer.github.io//generated_diagnostic.html">
+  <link rel="alternate" type="application/rss+xml" title="rust-analyzer"
+    href="https://rust-analyzer.github.io//feed.xml">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/fav/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/fav/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/fav/favicon-16x16.png">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <link rel="mask-icon" href="/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+  
+  <header>
+    <div id="header-inner">
+      <div id="header-left">
+        <a class="site-title" href="/">
+          <img src="/assets/rust-analyzer.svg" alt="rust analyzer" id="header-logo">
+        </a>
+      </div>
+      <div id="header-right">
+        <a class="nav-link" href="https://opencollective.com/rust-analyzer/">Sponsor</a>
+        <a class="nav-link" href="/manual.html">Docs</a>
+        <a class="nav-link" href="/blog">Blog</a>
+        <a class="nav-link" href="/thisweek">Changelog</a>
+      </div>
+    </div>
+  </header>
+  
+
+  <main>
+    <div class="sect2">
+<h3 id="break-outside-of-loop">break-outside-of-loop</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_ty/src/diagnostics.rs#L245">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if <code>break</code> keyword is used outside of a loop.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inactive-code">inactive-code</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_def/src/diagnostics.rs#L98">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is shown for code with inactive <code>#[cfg]</code> attributes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="incorrect-ident-case">incorrect-ident-case</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_ty/src/diagnostics.rs#L345">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if item name doesn&#8217;t follow <a href="https://doc.rust-lang.org/1.0.0/style/style/naming/README.html">Rust naming convention</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="macro-error">macro-error</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_def/src/diagnostics.rs#L167">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is shown for macro expansion errors.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mismatched-arg-count">mismatched-arg-count</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_ty/src/diagnostics.rs#L293">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if function is invoked with an incorrect amount of arguments.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="missing-match-arm">missing-match-arm</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_ty/src/diagnostics.rs#L164">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if <code>match</code> block is missing one or more match arms.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="missing-ok-in-tail-expr">missing-ok-in-tail-expr</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_ty/src/diagnostics.rs#L189">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if block that should return <code>Result</code> returns a value not wrapped in <code>Ok</code>.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="nb">u8</span><span class="p">,</span> <span class="p">()</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="mi">10</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="missing-pat-fields">missing-pat-fields</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_ty/src/diagnostics.rs#L115">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if pattern lacks some fields that exist in the corresponding structure.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">A</span> <span class="p">{</span> <span class="n">a</span><span class="p">:</span> <span class="nb">u8</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">u8</span> <span class="p">}</span>
+
+<span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="n">A</span> <span class="p">{</span> <span class="n">a</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="mi">20</span> <span class="p">};</span>
+
+<span class="k">if</span> <span class="k">let</span> <span class="n">A</span> <span class="p">{</span> <span class="n">a</span> <span class="p">}</span> <span class="o">=</span> <span class="n">a</span> <span class="p">{</span>
+    <span class="c">// ...</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="missing-structure-fields">missing-structure-fields</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_ty/src/diagnostics.rs#L68">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if record lacks some fields that exist in the corresponding structure.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">A</span> <span class="p">{</span> <span class="n">a</span><span class="p">:</span> <span class="nb">u8</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">u8</span> <span class="p">}</span>
+
+<span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="n">A</span> <span class="p">{</span> <span class="n">a</span><span class="p">:</span> <span class="mi">10</span> <span class="p">};</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="missing-unsafe">missing-unsafe</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_ty/src/diagnostics.rs#L269">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if operation marked as <code>unsafe</code> is used outside of <code>unsafe</code> function or block.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="no-such-field">no-such-field</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_ty/src/diagnostics.rs#L41">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if created structure does not have field provided in record.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unresolved-extern-crate">unresolved-extern-crate</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_def/src/diagnostics.rs#L43">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if rust-analyzer is unable to discover referred extern crate.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unresolved-import">unresolved-import</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_def/src/diagnostics.rs#L67">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if rust-analyzer is unable to discover imported module.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unresolved-module">unresolved-module</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_def/src/diagnostics.rs#L18">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is triggered if rust-analyzer is unable to discover referred module.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unresolved-proc-macro">unresolved-proc-macro</h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/hir_def/src/diagnostics.rs#L131">diagnostics.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This diagnostic is shown when a procedural macro can not be found. This usually means that
+procedural macro support is simply disabled (and hence is only a weak hint instead of an error),
+but can also indicate project setup problems.</p>
+</div>
+</div>
+  </main>
+
+  <footer>
+    <div id="footer-inner">
+      <div class="footer-by">
+        <a href="https://ferrous-systems.com/">
+          <img class="ferrous-logo" src="/assets/ferrous-logo.png">Ferrous Systems</a>
+        &
+        <a href="https://github.com/rust-analyzer/rust-analyzer/graphs/contributors">contributors</a>
+      </div>
+
+      <div id="footer-links">
+        <a href="/feed.xml" class="footer-link">
+          <i class="fa fa-rss"></i> rss
+        </a>
+        <a href="https://github.com/rust-analyzer/rust-analyzer.github.io" class="footer-link">
+          <i class="fa fa-github"></i> src
+        </a>
+        <a href="https://opencollective.com/rust-analyzer/" class="footer-link">
+          <i class="fa fa-github"></i> sponsor
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

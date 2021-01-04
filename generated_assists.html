@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>rust-analyzer</title>
+  <meta name="description"
+    content="rust-analyzer: building a better Rust IDE">
+
+  <link rel="stylesheet" href="/css/asciidoctor.css">
+  <link rel="stylesheet" href="/css/rouge-github.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  <link rel="canonical" href="https://rust-analyzer.github.io//generated_assists.html">
+  <link rel="alternate" type="application/rss+xml" title="rust-analyzer"
+    href="https://rust-analyzer.github.io//feed.xml">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/fav/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/fav/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/fav/favicon-16x16.png">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <link rel="mask-icon" href="/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+  
+  <header>
+    <div id="header-inner">
+      <div id="header-left">
+        <a class="site-title" href="/">
+          <img src="/assets/rust-analyzer.svg" alt="rust analyzer" id="header-logo">
+        </a>
+      </div>
+      <div id="header-right">
+        <a class="nav-link" href="https://opencollective.com/rust-analyzer/">Sponsor</a>
+        <a class="nav-link" href="/manual.html">Docs</a>
+        <a class="nav-link" href="/blog">Blog</a>
+        <a class="nav-link" href="/thisweek">Changelog</a>
+      </div>
+    </div>
+  </header>
+  
+
+  <main>
+    <h3 id="add_explicit_type" class="discrete"><code>add_explicit_type</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/add_explicit_type.rs#L9">add_explicit_type.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Specify type for a let binding.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">x</span><span class="err">┃</span> <span class="o">=</span> <span class="mi">92</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">x</span><span class="p">:</span> <span class="nb">i32</span> <span class="o">=</span> <span class="mi">92</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="add_hash" class="discrete"><code>add_hash</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/raw_string.rs#L92">raw_string.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds a hash to a raw string literal.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="s">r#"Hello,┃ World!"#</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="s">r##"Hello, World!"##</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="add_impl_default_members" class="discrete"><code>add_impl_default_members</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/add_missing_impl_members.rs#L53">add_missing_impl_members.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds scaffold for overriding default impl members.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+</pre></td><td class="code"><pre><span class="k">trait</span> <span class="n">Trait</span> <span class="p">{</span>
+    <span class="k">type</span> <span class="n">X</span><span class="p">;</span>
+    <span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">);</span>
+    <span class="k">fn</span> <span class="nf">bar</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="k">impl</span> <span class="n">Trait</span> <span class="k">for</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">type</span> <span class="n">X</span> <span class="o">=</span> <span class="p">();</span>
+    <span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="p">{}</span><span class="err">┃</span>
+
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="k">trait</span> <span class="n">Trait</span> <span class="p">{</span>
+    <span class="k">type</span> <span class="n">X</span><span class="p">;</span>
+    <span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">);</span>
+    <span class="k">fn</span> <span class="nf">bar</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="k">impl</span> <span class="n">Trait</span> <span class="k">for</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">type</span> <span class="n">X</span> <span class="o">=</span> <span class="p">();</span>
+    <span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="p">{}</span>
+
+    <span class="err">$</span><span class="mi">0</span><span class="k">fn</span> <span class="nf">bar</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="add_impl_missing_members" class="discrete"><code>add_impl_missing_members</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/add_missing_impl_members.rs#L12">add_missing_impl_members.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds scaffold for required impl members.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="k">trait</span> <span class="n">Trait</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">type</span> <span class="n">X</span><span class="p">;</span>
+    <span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">T</span><span class="p">;</span>
+    <span class="k">fn</span> <span class="nf">bar</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="k">impl</span> <span class="n">Trait</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="k">for</span> <span class="p">()</span> <span class="p">{</span><span class="err">┃</span>
+
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="k">trait</span> <span class="n">Trait</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">type</span> <span class="n">X</span><span class="p">;</span>
+    <span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">T</span><span class="p">;</span>
+    <span class="k">fn</span> <span class="nf">bar</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="k">impl</span> <span class="n">Trait</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="k">for</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="err">$</span><span class="mi">0</span><span class="k">type</span> <span class="n">X</span><span class="p">;</span>
+
+    <span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">u32</span> <span class="p">{</span>
+        <span class="nd">todo!</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="add_turbo_fish" class="discrete"><code>add_turbo_fish</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/add_turbo_fish.rs#L10">add_turbo_fish.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds <code>::&lt;_&gt;</code> to a call of a generic method or function.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="n">make</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="n">T</span> <span class="p">{</span> <span class="nd">todo!</span><span class="p">()</span> <span class="p">}</span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">make</span><span class="err">┃</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="n">make</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="n">T</span> <span class="p">{</span> <span class="nd">todo!</span><span class="p">()</span> <span class="p">}</span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="nn">make</span><span class="p">::</span><span class="o">&lt;</span><span class="err">$</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">_</span><span class="p">}</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="apply_demorgan" class="discrete"><code>apply_demorgan</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/apply_demorgan.rs#L5">apply_demorgan.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Apply <a href="https://en.wikipedia.org/wiki/De_Morgan%27s_laws">De Morgan&#8217;s law</a>.
+This transforms expressions of the form <code>!l || !r</code> into <code>!(l &amp;&amp; r)</code>.
+This also works with <code>&amp;&amp;</code>. This assist can only be applied with the cursor
+on either <code>||</code> or <code>&amp;&amp;</code>, with both operands being a negation of some kind.
+This means something of the form <code>!x</code> or <code>x != y</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">4</span> <span class="p">||</span><span class="err">┃</span> <span class="o">!</span><span class="n">y</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="o">!</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="n">y</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="auto_import" class="discrete"><code>auto_import</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/auto_import.rs#L67">auto_import.rs</a></p>
+</div>
+<div class="paragraph">
+<p>If the name is unresolved, provides all possible imports for it.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">map</span> <span class="o">=</span> <span class="n">HashMap</span><span class="err">┃</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nn">collections</span><span class="p">::</span><span class="n">HashMap</span><span class="p">;</span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">map</span> <span class="o">=</span> <span class="nn">HashMap</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="change_visibility" class="discrete"><code>change_visibility</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/change_visibility.rs#L11">change_visibility.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds or changes existing visibility specifier.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="err">┃</span><span class="k">fn</span> <span class="nf">frobnicate</span><span class="p">()</span> <span class="p">{}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">pub</span><span class="p">(</span><span class="n">crate</span><span class="p">)</span> <span class="k">fn</span> <span class="nf">frobnicate</span><span class="p">()</span> <span class="p">{}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="convert_integer_literal" class="discrete"><code>convert_integer_literal</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/convert_integer_literal.rs#L5">convert_integer_literal.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Converts the base of integer literals to other bases.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">const</span> <span class="mi">_</span><span class="p">:</span> <span class="nb">i32</span> <span class="o">=</span> <span class="mi">10</span><span class="err">┃</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">const</span> <span class="mi">_</span><span class="p">:</span> <span class="nb">i32</span> <span class="o">=</span> <span class="mi">0b1010</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="convert_to_guarded_return" class="discrete"><code>convert_to_guarded_return</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/early_return.rs#L21">early_return.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Replace a large conditional with a guarded return.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="err">┃</span><span class="k">if</span> <span class="n">cond</span> <span class="p">{</span>
+        <span class="nf">foo</span><span class="p">();</span>
+        <span class="nf">bar</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="o">!</span><span class="n">cond</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nf">foo</span><span class="p">();</span>
+    <span class="nf">bar</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="expand_glob_import" class="discrete"><code>expand_glob_import</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/expand_glob_import.rs#L18">expand_glob_import.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Expands glob imports.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">mod</span> <span class="n">foo</span> <span class="p">{</span>
+    <span class="k">pub</span> <span class="k">struct</span> <span class="n">Bar</span><span class="p">;</span>
+    <span class="k">pub</span> <span class="k">struct</span> <span class="n">Baz</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">use</span> <span class="nn">foo</span><span class="p">::</span><span class="o">*</span><span class="err">┃</span><span class="p">;</span>
+
+<span class="k">fn</span> <span class="nf">qux</span><span class="p">(</span><span class="n">bar</span><span class="p">:</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">baz</span><span class="p">:</span> <span class="n">Baz</span><span class="p">)</span> <span class="p">{}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">mod</span> <span class="n">foo</span> <span class="p">{</span>
+    <span class="k">pub</span> <span class="k">struct</span> <span class="n">Bar</span><span class="p">;</span>
+    <span class="k">pub</span> <span class="k">struct</span> <span class="n">Baz</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">use</span> <span class="nn">foo</span><span class="p">::{</span><span class="n">Baz</span><span class="p">,</span> <span class="n">Bar</span><span class="p">};</span>
+
+<span class="k">fn</span> <span class="nf">qux</span><span class="p">(</span><span class="n">bar</span><span class="p">:</span> <span class="n">Bar</span><span class="p">,</span> <span class="n">baz</span><span class="p">:</span> <span class="n">Baz</span><span class="p">)</span> <span class="p">{}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="extract_assignment" class="discrete"><code>extract_assignment</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/extract_assignment.rs#L12">extract_assignment.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Extracts variable assigment to outside an if or match statement.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">foo</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="k">true</span> <span class="p">{</span>
+        <span class="err">┃</span><span class="n">foo</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">foo</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="k">mut</span> <span class="n">foo</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+
+    <span class="n">foo</span> <span class="o">=</span> <span class="k">if</span> <span class="k">true</span> <span class="p">{</span>
+        <span class="mi">5</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="mi">4</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="extract_module_to_file" class="discrete"><code>extract_module_to_file</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/extract_module_to_file.rs#L10">extract_module_to_file.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This assist extract module to file.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">mod</span> <span class="n">foo</span> <span class="p">{</span><span class="err">┃</span>
+    <span class="k">fn</span> <span class="nf">t</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">mod</span> <span class="n">foo</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="extract_struct_from_enum_variant" class="discrete"><code>extract_struct_from_enum_variant</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/extract_struct_from_enum_variant.rs#L19">extract_struct_from_enum_variant.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Extracts a struct from enum variant.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">A</span> <span class="p">{</span> <span class="err">┃</span><span class="nf">One</span><span class="p">(</span><span class="nb">u32</span><span class="p">,</span> <span class="nb">u32</span><span class="p">)</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="nf">One</span><span class="p">(</span><span class="k">pub</span> <span class="nb">u32</span><span class="p">,</span> <span class="k">pub</span> <span class="nb">u32</span><span class="p">);</span>
+
+<span class="k">enum</span> <span class="n">A</span> <span class="p">{</span> <span class="nf">One</span><span class="p">(</span><span class="n">One</span><span class="p">)</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="extract_variable" class="discrete"><code>extract_variable</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/extract_variable.rs#L13">extract_variable.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Extracts subexpression into a variable.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="err">┃</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span><span class="err">┃</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="err">$</span><span class="mi">0</span><span class="n">var_name</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">var_name</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="fill_match_arms" class="discrete"><code>fill_match_arms</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/fill_match_arms.rs#L15">fill_match_arms.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds missing clauses to a <code>match</code> expression.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">match</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="err">┃</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">match</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="err">$</span><span class="mi">0</span><span class="nn">Action</span><span class="p">::</span><span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span> <span class="p">}</span> <span class="k">=&gt;</span> <span class="p">{}</span>
+        <span class="nn">Action</span><span class="p">::</span><span class="n">Stop</span> <span class="k">=&gt;</span> <span class="p">{}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="fix_visibility" class="discrete"><code>fix_visibility</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/fix_visibility.rs#L12">fix_visibility.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Makes inaccessible item public.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="k">mod</span> <span class="n">m</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">frobnicate</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nn">m</span><span class="p">::</span><span class="n">frobnicate</span><span class="err">┃</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="k">mod</span> <span class="n">m</span> <span class="p">{</span>
+    <span class="err">$</span><span class="mi">0</span><span class="k">pub</span><span class="p">(</span><span class="n">crate</span><span class="p">)</span> <span class="k">fn</span> <span class="nf">frobnicate</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nn">m</span><span class="p">::</span><span class="nf">frobnicate</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="flip_binexpr" class="discrete"><code>flip_binexpr</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/flip_binexpr.rs#L5">flip_binexpr.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Flips operands of a binary expression.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="mi">_</span> <span class="o">=</span> <span class="mi">90</span> <span class="o">+</span><span class="err">┃</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="mi">_</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">90</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="flip_comma" class="discrete"><code>flip_comma</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/flip_comma.rs#L5">flip_comma.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Flips two comma-separated items.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="err">┃</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="flip_trait_bound" class="discrete"><code>flip_trait_bound</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/flip_trait_bound.rs#L9">flip_trait_bound.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Flips two trait bounds.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="n">foo</span><span class="o">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">Clone</span> <span class="o">+</span><span class="err">┃</span> <span class="nb">Copy</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="n">foo</span><span class="o">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="nb">Copy</span> <span class="o">+</span> <span class="n">Clone</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="generate_default_from_enum_variant" class="discrete"><code>generate_default_from_enum_variant</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/generate_default_from_enum_variant.rs#L8">generate_default_from_enum_variant.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds a Default impl for an enum using a variant.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Version</span> <span class="p">{</span>
+ <span class="n">Undefined</span><span class="p">,</span>
+ <span class="n">Minor</span><span class="err">┃</span><span class="p">,</span>
+ <span class="n">Major</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Version</span> <span class="p">{</span>
+ <span class="n">Undefined</span><span class="p">,</span>
+ <span class="n">Minor</span><span class="p">,</span>
+ <span class="n">Major</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">impl</span> <span class="n">Default</span> <span class="k">for</span> <span class="n">Version</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">default</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="n">Self</span> <span class="p">{</span>
+        <span class="nn">Self</span><span class="p">::</span><span class="n">Minor</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="generate_derive" class="discrete"><code>generate_derive</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/generate_derive.rs#L9">generate_derive.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds a new <code>#[derive()]</code> clause to a struct or enum.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
+    <span class="n">x</span><span class="p">:</span> <span class="nb">u32</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">:</span> <span class="nb">u32</span><span class="p">,</span><span class="err">┃</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="nd">#[derive(</span><span class="err">$</span><span class="mi">0</span><span class="nd">)]</span>
+<span class="k">struct</span> <span class="n">Point</span> <span class="p">{</span>
+    <span class="n">x</span><span class="p">:</span> <span class="nb">u32</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">:</span> <span class="nb">u32</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="generate_from_impl_for_enum" class="discrete"><code>generate_from_impl_for_enum</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/generate_from_impl_for_enum.rs#L8">generate_from_impl_for_enum.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds a From impl for an enum variant with one tuple field.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">A</span> <span class="p">{</span> <span class="err">┃</span><span class="nf">One</span><span class="p">(</span><span class="nb">u32</span><span class="p">)</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">A</span> <span class="p">{</span> <span class="nf">One</span><span class="p">(</span><span class="nb">u32</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="k">impl</span> <span class="n">From</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">A</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">from</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nb">u32</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Self</span> <span class="p">{</span>
+        <span class="nn">A</span><span class="p">::</span><span class="nf">One</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="generate_function" class="discrete"><code>generate_function</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/generate_function.rs#L19">generate_function.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds a stub function with a signature matching the function under the cursor.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Baz</span><span class="p">;</span>
+<span class="k">fn</span> <span class="nf">baz</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="n">Baz</span> <span class="p">{</span> <span class="n">Baz</span> <span class="p">}</span>
+<span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">bar</span><span class="err">┃</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="nf">baz</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Baz</span><span class="p">;</span>
+<span class="k">fn</span> <span class="nf">baz</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="n">Baz</span> <span class="p">{</span> <span class="n">Baz</span> <span class="p">}</span>
+<span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">bar</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="nf">baz</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">bar</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span><span class="p">,</span> <span class="n">baz</span><span class="p">:</span> <span class="n">Baz</span><span class="p">)</span> <span class="err">$</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="k">-&gt;</span> <span class="p">()}</span> <span class="p">{</span>
+    <span class="nd">todo!</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="generate_impl" class="discrete"><code>generate_impl</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/generate_impl.rs#L7">generate_impl.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds a new inherent impl for a type.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Ctx</span><span class="o">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">Clone</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span><span class="err">┃</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Ctx</span><span class="o">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">Clone</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">Clone</span><span class="o">&gt;</span> <span class="n">Ctx</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="err">$</span><span class="mi">0</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="generate_new" class="discrete"><code>generate_new</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/generate_new.rs#L11">generate_new.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds a new inherent impl for a type.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Ctx</span><span class="o">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">Clone</span><span class="o">&gt;</span> <span class="p">{</span>
+     <span class="n">data</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span><span class="err">┃</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Ctx</span><span class="o">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">Clone</span><span class="o">&gt;</span> <span class="p">{</span>
+     <span class="n">data</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="n">Clone</span><span class="o">&gt;</span> <span class="n">Ctx</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="err">$</span><span class="mi">0</span><span class="nf">new</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Self</span> <span class="p">{</span> <span class="n">Self</span> <span class="p">{</span> <span class="n">data</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="infer_function_return_type" class="discrete"><code>infer_function_return_type</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/infer_function_return_type.rs#L7">infer_function_return_type.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds the return type to a function or closure inferred from its tail expression if it doesn&#8217;t have a return
+type specified. This assists is useable in a functions or closures tail expression or return type position.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> <span class="mi">4</span><span class="err">┃</span><span class="mi">2i32</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="nb">i32</span> <span class="p">{</span> <span class="mi">42i32</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="inline_local_variable" class="discrete"><code>inline_local_variable</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/inline_local_variable.rs#L13">inline_local_variable.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Inlines local variable.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">x</span><span class="err">┃</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">x</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="introduce_named_lifetime" class="discrete"><code>introduce_named_lifetime</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/introduce_named_lifetime.rs#L12">introduce_named_lifetime.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Change an anonymous lifetime to a named lifetime.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">impl</span> <span class="n">Cursor</span><span class="o">&lt;</span><span class="nv">'_</span><span class="err">┃</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">node</span><span class="p">(</span><span class="k">self</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="o">&amp;</span><span class="n">SyntaxNode</span> <span class="p">{</span>
+        <span class="k">match</span> <span class="k">self</span> <span class="p">{</span>
+            <span class="nn">Cursor</span><span class="p">::</span><span class="nf">Replace</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">|</span> <span class="nn">Cursor</span><span class="p">::</span><span class="nf">Before</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="n">node</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">impl</span><span class="o">&lt;</span><span class="nv">'a</span><span class="o">&gt;</span> <span class="n">Cursor</span><span class="o">&lt;</span><span class="nv">'a</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">node</span><span class="p">(</span><span class="k">self</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="o">&amp;</span><span class="n">SyntaxNode</span> <span class="p">{</span>
+        <span class="k">match</span> <span class="k">self</span> <span class="p">{</span>
+            <span class="nn">Cursor</span><span class="p">::</span><span class="nf">Replace</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">|</span> <span class="nn">Cursor</span><span class="p">::</span><span class="nf">Before</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="n">node</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="invert_if" class="discrete"><code>invert_if</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/invert_if.rs#L12">invert_if.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Apply invert_if
+This transforms if expressions of the form <code>if !x {A} else {B}</code> into <code>if x {B} else {A}</code>
+This also works with <code>!=</code>. This assist can only be applied with the cursor
+on <code>if</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span><span class="err">┃</span> <span class="o">!</span><span class="n">y</span> <span class="p">{</span> <span class="n">A</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="n">B</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">y</span> <span class="p">{</span> <span class="n">B</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="n">A</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="make_raw_string" class="discrete"><code>make_raw_string</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/raw_string.rs#L8">raw_string.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds <code>r#</code> to a plain string literal.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="s">"Hello,┃ World!"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="s">r#"Hello, World!"#</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="make_usual_string" class="discrete"><code>make_usual_string</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/raw_string.rs#L50">raw_string.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Turns a raw string into a plain string.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="s">r#"Hello,┃ "World!""#</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="s">"Hello, </span><span class="se">\"</span><span class="s">World!</span><span class="se">\"</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="merge_imports" class="discrete"><code>merge_imports</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/merge_imports.rs#L13">merge_imports.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Merges two imports with a common prefix.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+</pre></td><td class="code"><pre><span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="err">┃</span><span class="nn">fmt</span><span class="p">::</span><span class="n">Formatter</span><span class="p">;</span>
+<span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="n">io</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">use</span> <span class="nn">std</span><span class="p">::{</span><span class="nn">fmt</span><span class="p">::</span><span class="n">Formatter</span><span class="p">,</span> <span class="n">io</span><span class="p">};</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="merge_match_arms" class="discrete"><code>merge_match_arms</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/merge_match_arms.rs#L11">merge_match_arms.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Merges identical match arms.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">match</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="err">┃</span><span class="nn">Action</span><span class="p">::</span><span class="nf">Move</span><span class="p">(</span><span class="o">..</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="nf">foo</span><span class="p">(),</span>
+        <span class="nn">Action</span><span class="p">::</span><span class="n">Stop</span> <span class="k">=&gt;</span> <span class="nf">foo</span><span class="p">(),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">match</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="nn">Action</span><span class="p">::</span><span class="nf">Move</span><span class="p">(</span><span class="o">..</span><span class="p">)</span> <span class="p">|</span> <span class="nn">Action</span><span class="p">::</span><span class="n">Stop</span> <span class="k">=&gt;</span> <span class="nf">foo</span><span class="p">(),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="move_arm_cond_to_match_guard" class="discrete"><code>move_arm_cond_to_match_guard</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/move_guard.rs#L68">move_guard.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Moves if expression from match arm body into a guard.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">match</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="nn">Action</span><span class="p">::</span><span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span> <span class="p">}</span> <span class="k">=&gt;</span> <span class="err">┃</span><span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="p">{</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">},</span>
+        <span class="mi">_</span> <span class="k">=&gt;</span> <span class="p">(),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">match</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="nn">Action</span><span class="p">::</span><span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span> <span class="p">}</span> <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="k">=&gt;</span> <span class="nf">foo</span><span class="p">(),</span>
+        <span class="mi">_</span> <span class="k">=&gt;</span> <span class="p">(),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="move_bounds_to_where_clause" class="discrete"><code>move_bounds_to_where_clause</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/move_bounds.rs#L10">move_bounds.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Moves inline type bounds to a where clause.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="n">apply</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="err">┃</span><span class="n">F</span><span class="p">:</span> <span class="nf">FnOnce</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">F</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">U</span> <span class="p">{</span>
+    <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="n">apply</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">F</span><span class="o">&gt;</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">F</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">U</span> <span class="k">where</span> <span class="n">F</span><span class="p">:</span> <span class="nf">FnOnce</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">U</span> <span class="p">{</span>
+    <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="move_guard_to_arm_body" class="discrete"><code>move_guard_to_arm_body</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/move_guard.rs#L8">move_guard.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Moves match guard into match arm body.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">match</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="nn">Action</span><span class="p">::</span><span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span> <span class="p">}</span> <span class="err">┃</span><span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="k">=&gt;</span> <span class="nf">foo</span><span class="p">(),</span>
+        <span class="mi">_</span> <span class="k">=&gt;</span> <span class="p">(),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">match</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="nn">Action</span><span class="p">::</span><span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span> <span class="p">}</span> <span class="k">=&gt;</span> <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">10</span> <span class="p">{</span>
+            <span class="nf">foo</span><span class="p">()</span>
+        <span class="p">},</span>
+        <span class="mi">_</span> <span class="k">=&gt;</span> <span class="p">(),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="qualify_path" class="discrete"><code>qualify_path</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/qualify_path.rs#L19">qualify_path.rs</a></p>
+</div>
+<div class="paragraph">
+<p>If the name is unresolved, provides all possible qualified paths for it.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">map</span> <span class="o">=</span> <span class="n">HashMap</span><span class="err">┃</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">map</span> <span class="o">=</span> <span class="nn">std</span><span class="p">::</span><span class="nn">collections</span><span class="p">::</span><span class="nn">HashMap</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="remove_dbg" class="discrete"><code>remove_dbg</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/remove_dbg.rs#L8">remove_dbg.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Removes <code>dbg!()</code> macro call.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="err">┃</span><span class="nd">dbg!</span><span class="p">(</span><span class="mi">92</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="mi">92</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="remove_hash" class="discrete"><code>remove_hash</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/raw_string.rs#L120">raw_string.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Removes a hash from a raw string literal.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="s">r#"Hello,┃ World!"#</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="s">r"Hello, World!"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="remove_mut" class="discrete"><code>remove_mut</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/remove_mut.rs#L5">remove_mut.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Removes the <code>mut</code> keyword.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">impl</span> <span class="n">Walrus</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">feed</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="err">┃</span> <span class="k">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">u32</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">impl</span> <span class="n">Walrus</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">feed</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">u32</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="remove_unused_param" class="discrete"><code>remove_unused_param</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/remove_unused_param.rs#L14">remove_unused_param.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Removes unused function parameter.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">frobnicate</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">i32</span><span class="err">┃</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">frobnicate</span><span class="p">(</span><span class="mi">92</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">frobnicate</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">frobnicate</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="reorder_fields" class="discrete"><code>reorder_fields</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/reorder_fields.rs#L11">reorder_fields.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Reorder the fields of record literals and record patterns in the same order as in
+the definition.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Foo</span> <span class="p">{</span><span class="n">foo</span><span class="p">:</span> <span class="nb">i32</span><span class="p">,</span> <span class="n">bar</span><span class="p">:</span> <span class="nb">i32</span><span class="p">};</span>
+<span class="k">const</span> <span class="n">test</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">=</span> <span class="err">┃</span><span class="n">Foo</span> <span class="p">{</span><span class="n">bar</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">foo</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+</pre></td><td class="code"><pre><span class="k">struct</span> <span class="n">Foo</span> <span class="p">{</span><span class="n">foo</span><span class="p">:</span> <span class="nb">i32</span><span class="p">,</span> <span class="n">bar</span><span class="p">:</span> <span class="nb">i32</span><span class="p">};</span>
+<span class="k">const</span> <span class="n">test</span><span class="p">:</span> <span class="n">Foo</span> <span class="o">=</span> <span class="n">Foo</span> <span class="p">{</span><span class="n">foo</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bar</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="replace_derive_with_manual_impl" class="discrete"><code>replace_derive_with_manual_impl</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/replace_derive_with_manual_impl.rs#L19">replace_derive_with_manual_impl.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Converts a <code>derive</code> impl into a manual one.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+</pre></td><td class="code"><pre><span class="nd">#[derive(Deb</span><span class="err">┃</span><span class="nd">ug,</span> <span class="nd">Display)]</span>
+<span class="k">struct</span> <span class="n">S</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="nd">#[derive(Display)]</span>
+<span class="k">struct</span> <span class="n">S</span><span class="p">;</span>
+
+<span class="k">impl</span> <span class="n">Debug</span> <span class="k">for</span> <span class="n">S</span> <span class="p">{</span>
+    <span class="k">fn</span> <span class="nf">fmt</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="o">&amp;</span><span class="k">mut</span> <span class="n">Formatter</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="err">$</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="nd">todo!</span><span class="p">()}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="replace_if_let_with_match" class="discrete"><code>replace_if_let_with_match</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/replace_if_let_with_match.rs#L15">replace_if_let_with_match.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Replaces <code>if let</code> with an else branch with a <code>match</code> expression.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">┃</span><span class="k">if</span> <span class="k">let</span> <span class="nn">Action</span><span class="p">::</span><span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span> <span class="p">}</span> <span class="o">=</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="nf">foo</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">bar</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">match</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="nn">Action</span><span class="p">::</span><span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span> <span class="p">}</span> <span class="k">=&gt;</span> <span class="nf">foo</span><span class="p">(</span><span class="n">distance</span><span class="p">),</span>
+        <span class="mi">_</span> <span class="k">=&gt;</span> <span class="nf">bar</span><span class="p">(),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="replace_impl_trait_with_generic" class="discrete"><code>replace_impl_trait_with_generic</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/replace_impl_trait_with_generic.rs#L5">replace_impl_trait_with_generic.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Replaces <code>impl Trait</code> function argument with the named generic.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">foo</span><span class="p">(</span><span class="n">bar</span><span class="p">:</span> <span class="err">┃</span><span class="k">impl</span> <span class="n">Bar</span><span class="p">)</span> <span class="p">{}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="n">foo</span><span class="o">&lt;</span><span class="n">B</span><span class="p">:</span> <span class="n">Bar</span><span class="o">&gt;</span><span class="p">(</span><span class="n">bar</span><span class="p">:</span> <span class="n">B</span><span class="p">)</span> <span class="p">{}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="replace_let_with_if_let" class="discrete"><code>replace_let_with_if_let</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/replace_let_with_if_let.rs#L15">replace_let_with_if_let.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Replaces <code>let</code> with an <code>if-let</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">┃</span><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="nf">compute</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">compute</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="nb">Option</span><span class="o">&lt;</span><span class="nb">i32</span><span class="o">&gt;</span> <span class="p">{</span> <span class="nb">None</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nf">Some</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="nf">compute</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">compute</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="nb">Option</span><span class="o">&lt;</span><span class="nb">i32</span><span class="o">&gt;</span> <span class="p">{</span> <span class="nb">None</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="replace_match_with_if_let" class="discrete"><code>replace_match_with_if_let</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/replace_if_let_with_match.rs#L84">replace_if_let_with_match.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Replaces a binary <code>match</code> with a wildcard pattern and no guards with an <code>if let</code> expression.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="err">┃</span><span class="k">match</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="nn">Action</span><span class="p">::</span><span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span> <span class="p">}</span> <span class="k">=&gt;</span> <span class="nf">foo</span><span class="p">(</span><span class="n">distance</span><span class="p">),</span>
+        <span class="mi">_</span> <span class="k">=&gt;</span> <span class="nf">bar</span><span class="p">(),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Action</span> <span class="p">{</span> <span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">u32</span> <span class="p">},</span> <span class="n">Stop</span> <span class="p">}</span>
+
+<span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="n">action</span><span class="p">:</span> <span class="n">Action</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nn">Action</span><span class="p">::</span><span class="n">Move</span> <span class="p">{</span> <span class="n">distance</span> <span class="p">}</span> <span class="o">=</span> <span class="n">action</span> <span class="p">{</span>
+        <span class="nf">foo</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nf">bar</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="replace_qualified_name_with_use" class="discrete"><code>replace_qualified_name_with_use</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/replace_qualified_name_with_use.rs#L7">replace_qualified_name_with_use.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds a use statement for a given fully-qualified name.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">process</span><span class="p">(</span><span class="n">map</span><span class="p">:</span> <span class="nn">std</span><span class="p">::</span><span class="nn">collections</span><span class="p">::</span><span class="err">┃</span><span class="n">HashMap</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span> <span class="nb">String</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="nn">collections</span><span class="p">::</span><span class="n">HashMap</span><span class="p">;</span>
+
+<span class="k">fn</span> <span class="nf">process</span><span class="p">(</span><span class="n">map</span><span class="p">:</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="nb">String</span><span class="p">,</span> <span class="nb">String</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="replace_string_with_char" class="discrete"><code>replace_string_with_char</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/replace_string_with_char.rs#L5">replace_string_with_char.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Replace string with char.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">find</span><span class="p">(</span><span class="s">"{┃"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nf">find</span><span class="p">(</span><span class="sc">'{'</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="replace_unwrap_with_match" class="discrete"><code>replace_unwrap_with_match</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/replace_unwrap_with_match.rs#L18">replace_unwrap_with_match.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Replaces <code>unwrap</code> a <code>match</code> expression. Works for Result and Option.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span> <span class="nf">Ok</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="nf">Err</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">x</span><span class="p">:</span> <span class="n">Result</span><span class="o">&lt;</span><span class="nb">i32</span><span class="p">,</span> <span class="nb">i32</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nn">Result</span><span class="p">::</span><span class="nf">Ok</span><span class="p">(</span><span class="mi">92</span><span class="p">);</span>
+    <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="err">.┃</span><span class="nf">unwrap</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">enum</span> <span class="n">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span> <span class="nf">Ok</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="nf">Err</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="n">x</span><span class="p">:</span> <span class="n">Result</span><span class="o">&lt;</span><span class="nb">i32</span><span class="p">,</span> <span class="nb">i32</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nn">Result</span><span class="p">::</span><span class="nf">Ok</span><span class="p">(</span><span class="mi">92</span><span class="p">);</span>
+    <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="k">match</span> <span class="n">x</span> <span class="p">{</span>
+        <span class="nf">Ok</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="n">a</span><span class="p">,</span>
+        <span class="err">$</span><span class="mi">0_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="split_import" class="discrete"><code>split_import</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/split_import.rs#L7">split_import.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Wraps the tail of import into braces.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">use</span> <span class="nn">std</span><span class="p">::</span><span class="err">┃</span><span class="nn">collections</span><span class="p">::</span><span class="n">HashMap</span><span class="p">;</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">use</span> <span class="nn">std</span><span class="p">::{</span><span class="nn">collections</span><span class="p">::</span><span class="n">HashMap</span><span class="p">};</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="toggle_ignore" class="discrete"><code>toggle_ignore</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/toggle_ignore.rs#L8">toggle_ignore.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Adds <code>#[ignore]</code> attribute to the test.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="err">┃</span><span class="nd">#[test]</span>
+<span class="k">fn</span> <span class="n">arithmetics</span> <span class="p">{</span>
+    <span class="nd">assert_eq!</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="nd">#[test]</span>
+<span class="nd">#[ignore]</span>
+<span class="k">fn</span> <span class="n">arithmetics</span> <span class="p">{</span>
+    <span class="nd">assert_eq!</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="unwrap_block" class="discrete"><code>unwrap_block</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/unwrap_block.rs#L11">unwrap_block.rs</a></p>
+</div>
+<div class="paragraph">
+<p>This assist removes if&#8230;&#8203;else, for, while and loop control statements to just keep the body.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">true</span> <span class="p">{</span><span class="err">┃</span>
+        <span class="nd">println!</span><span class="p">(</span><span class="s">"foo"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"foo"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<h3 id="wrap_return_type_in_result" class="discrete"><code>wrap_return_type_in_result</code></h3>
+<div class="paragraph">
+<p><strong>Source:</strong> <a href="https://github.com/rust-analyzer/rust-analyzer/blob/master/crates/assists/src/handlers/wrap_return_type_in_result.rs#L11">wrap_return_type_in_result.rs</a></p>
+</div>
+<div class="paragraph">
+<p>Wrap the function&#8217;s return type into Result.</p>
+</div>
+<div class="listingblock">
+<div class="title">Before</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="nb">i32</span><span class="err">┃</span> <span class="p">{</span> <span class="mi">42i32</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">After</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+</pre></td><td class="code"><pre><span class="k">fn</span> <span class="nf">foo</span><span class="p">()</span> <span class="k">-&gt;</span> <span class="n">Result</span><span class="o">&lt;</span><span class="nb">i32</span><span class="p">,</span> <span class="err">$</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">_</span><span class="p">}</span><span class="o">&gt;</span> <span class="p">{</span> <span class="nf">Ok</span><span class="p">(</span><span class="mi">42i32</span><span class="p">)</span> <span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+  </main>
+
+  <footer>
+    <div id="footer-inner">
+      <div class="footer-by">
+        <a href="https://ferrous-systems.com/">
+          <img class="ferrous-logo" src="/assets/ferrous-logo.png">Ferrous Systems</a>
+        &
+        <a href="https://github.com/rust-analyzer/rust-analyzer/graphs/contributors">contributors</a>
+      </div>
+
+      <div id="footer-links">
+        <a href="/feed.xml" class="footer-link">
+          <i class="fa fa-rss"></i> rss
+        </a>
+        <a href="https://github.com/rust-analyzer/rust-analyzer.github.io" class="footer-link">
+          <i class="fa fa-github"></i> src
+        </a>
+        <a href="https://opencollective.com/rust-analyzer/" class="footer-link">
+          <i class="fa fa-github"></i> sponsor
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
